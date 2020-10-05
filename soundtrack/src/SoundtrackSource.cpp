@@ -13,7 +13,6 @@
 
 #include <libsoundtrackutil/SoundtrackIPC.h>
 #include <math.h>
-#include <obs-frontend-api.h>
 #include <obs.h>
 #include <util/bmem.h>
 #include <util/platform.h>

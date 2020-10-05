@@ -1,0 +1,16 @@
+trigger:
+  branches:
+    include:
+      - staging
+  tags:
+    include:
+      - '*'
+jobs:
+- job: 'Windows64'
+  pool:
+    vmImage: 'windows-2019'
+  workspace:
+    clean: all
+  steps:
+  - script: 'git submodule update --init --recursive'
+    displayName: 'Fetch git submodules'

@@ -1,0 +1,3 @@
+[submodule "libsoundtrackutil"]
+	path = libsoundtrackutil
+	url = https://github.com/stream-labs/libsoundtrackutil.git
