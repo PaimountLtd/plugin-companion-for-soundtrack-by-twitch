@@ -13,18 +13,18 @@ jobs:
     clean: all
   steps:
   - powershell: 'Write-Host "##vso[task.setvariable variable=tag]$((git.exe describe --tags --abbrev=0) | Out-String)"'
-      displayName: 'Get tag for artifact'
+    displayName: 'Get tag for artifact'
 
   - script: 'git submodule update --init --recursive'
     displayName: 'Fetch git submodules'
 
-  -script: './CI/install-windows.cmd'
+  - script: './CI/install-windows.cmd'
     displayName: 'Install and configure'
 
-  -script: 'cmake --build build --config RelWithDebInfo'
+  - script: 'cmake --build build --config RelWithDebInfo'
     displayName: 'Build'
 
-  -script: './CI/package-windows.cmd'
+  - script: './CI/package-windows.cmd'
     displayName: 'Package build'
 
   - task: ArchiveFiles@2
