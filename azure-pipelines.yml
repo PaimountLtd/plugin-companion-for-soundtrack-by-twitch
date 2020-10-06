@@ -37,7 +37,7 @@ jobs:
 
   - task: PublishBuildArtifacts@1
     inputs:
-      pathtoPublish: soundtrack-plugin-64.7z
+      pathtoPublish: soundtrack-plugin-64-$(tag).7z
       artifactName: soundtrack-plugin-64-$(BuildNumber).7z
     displayName: 'Publish artifact'
 
