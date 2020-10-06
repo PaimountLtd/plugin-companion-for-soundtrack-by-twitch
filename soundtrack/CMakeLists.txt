@@ -21,14 +21,14 @@ target_link_libraries(soundtrack-plugin PUBLIC
   ${CMAKE_CURRENT_BINARY_DIR}/../libsoundtrackutil/twitch-native-ipc/libuv/RelWithDebInfo/uv_a.lib
   ${CMAKE_CURRENT_BINARY_DIR}/../libsoundtrackutil/twitch-native-ipc/libnativeipc/RelWithDebInfo/nativeipc.lib
   ${CMAKE_CURRENT_BINARY_DIR}/../libsoundtrackutil/libsoundtrackutil/RelWithDebInfo/libsoundtrackutil.lib
-  ${PROJECT_SOURCE_DIR}/deps/libobs-windows64-release-26.0.0/packed_build/bin/${buildbits}bit/obs.lib
-  ${PROJECT_SOURCE_DIR}/deps/libobs-windows64-release-26.0.0/packed_build/bin/${buildbits}bit/w32-pthreads.lib
+  ${CMAKE_CURRENT_BINARY_DIR}/../obs/packed_build/bin/${buildbits}bit/obs.lib
+  ${CMAKE_CURRENT_BINARY_DIR}/../obs/packed_build/bin/${buildbits}bit/w32-pthreads.lib
 )
 
 target_include_directories(soundtrack-plugin PUBLIC
   include
-  ${PROJECT_SOURCE_DIR}/deps/libobs-windows64-release-26.0.0/packed_build/include/
-  ${PROJECT_SOURCE_DIR}/deps/libobs-windows64-release-26.0.0/packed_build/deps/
+  ${CMAKE_CURRENT_BINARY_DIR}/../obs/packed_build/include/
+  ${CMAKE_CURRENT_BINARY_DIR}/../deps/
   ${PROJECT_SOURCE_DIR}/libsoundtrackutil/libsoundtrackutil/include
   ${PROJECT_SOURCE_DIR}/libsoundtrackutil/GSL/include
   ${PROJECT_SOURCE_DIR}/libsoundtrackutil/twitch-native-ipc/libnativeipc/include

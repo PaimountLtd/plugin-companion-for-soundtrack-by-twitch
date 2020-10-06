@@ -12,5 +12,41 @@ jobs:
   workspace:
     clean: all
   steps:
+  - powershell: 'Write-Host "##vso[task.setvariable variable=tag]$((git.exe describe --tags --abbrev=0) | Out-String)"'
+      displayName: 'Get tag for artifact'
+
   - script: 'git submodule update --init --recursive'
     displayName: 'Fetch git submodules'
+
+  -script: './CI/install-windows.cmd'
+    displayName: 'Install and configure'
+
+  -script: 'cmake --build build --config RelWithDebInfo'
+    displayName: 'Build'
+
+  -script: './CI/package-windows.cmd'
+    displayName: 'Package build'
+
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: soundtrack-plugin-64
+      includeRootFolder: true
+      archiveType: 7z
+      archiveFile: 'soundtrack-plugin-64-$(tag).7z'
+    displayName: 'Generate artifact'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: soundtrack-plugin-64.7z
+      artifactName: soundtrack-plugin-64-$(BuildNumber).7z
+    displayName: 'Publish artifact'
+
+  - task: S3Upload@1
+    inputs:
+      awsCredentials: 'Streamlabs AWS'
+      regionName: 'us-west-2'
+      bucketName: 'obsstudios3.streamlabs.com'
+      globExpressions: 'soundtrack-plugin-64-$(BuildNumber)-$(tag).7z'
+      filesAcl: 'public-read'
+    displayName: 'Upload artifact to S3'
+    condition: and(succeeded(), contains(variables['Build.SourceBranch'], 'tags'))
