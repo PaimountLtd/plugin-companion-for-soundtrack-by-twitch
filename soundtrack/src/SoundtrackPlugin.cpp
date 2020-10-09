@@ -16,6 +16,12 @@ extern struct obs_source_info soundtrack_source;
 
 bool obs_module_load(void)
 {
+    auto minVersion = static_cast<uint32_t>(MAKE_SEMANTIC_VERSION(26, 0, 0));
+    if(obs_get_version() < minVersion) {
+        blog(LOG_WARNING, "LIBOBS version is too low, Twitch Soundtrack will not be loaded.");
+        return false;
+    }
+
     obs_register_source(&soundtrack_source);
     return true;
 }
