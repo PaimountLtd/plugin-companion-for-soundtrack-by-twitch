@@ -35,6 +35,10 @@ target_include_directories(soundtrack-plugin PUBLIC
   ${PROJECT_SOURCE_DIR}/libsoundtrackutil/twitch-native-ipc/libuv/include
 )
 
+if(MSVC)
+  target_compile_options(soundtrack-plugin PRIVATE /MT)
+endif()
+
 target_compile_features(soundtrack-plugin PRIVATE cxx_std_17)
 
 set_target_properties(soundtrack-plugin PROPERTIES OUTPUT_NAME soundtrack-plugin-${buildbits})
