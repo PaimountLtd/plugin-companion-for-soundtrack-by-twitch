@@ -5,6 +5,7 @@ target_sources(soundtrack-plugin PRIVATE
   src/SoundtrackPlugin.cpp
   include/Util.h
   include/LockFreeList.h
+  include/SoundtrackPluginData.h
 )
 
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
