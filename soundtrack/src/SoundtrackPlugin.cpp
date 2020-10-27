@@ -3,6 +3,8 @@
 // SPDX-License-Identifier: GPL-2.0
 
 #include <obs-module.h>
+
+#include "SoundtrackPluginData.h"
 #include "Util.h"
 #include "obs-source.h"
 #include <util/config-file.h>
